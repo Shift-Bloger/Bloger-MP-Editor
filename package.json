@@ -1,0 +1,82 @@
+{
+  "name": "vue3-tiptap",
+  "version": "2.0.4",
+  "type": "module",
+  "main": "dist/vue3-tiptap.umd.cjs",
+  "module": "dist/vue3-tiptap.js",
+  "types": "dist/vue3-tiptap.d.ts",
+  "files": [
+    "dist",
+    "src/components/vue3-tiptap"
+  ],
+  "keywords": [
+    "vue3",
+    "tiptap",
+    "rich-text-editor",
+    "wysiwyg",
+    "editor",
+    "vue",
+    "typescript"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "format": "prettier --write \"src/**/*.{js,ts,json,tsx,css,less,scss,vue,html,md}\"",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@ctrl/tinycolor": "^4.1.0",
+    "@swiftcarrot/color-fns": "^3.2.0",
+    "@tiptap/extension-code-block-lowlight": "^2.11.5",
+    "@tiptap/extension-color": "^2.11.5",
+    "@tiptap/extension-font-family": "^2.11.5",
+    "@tiptap/extension-highlight": "^2.11.5",
+    "@tiptap/extension-image": "^2.11.5",
+    "@tiptap/extension-link": "^2.11.5",
+    "@tiptap/extension-table": "^2.11.5",
+    "@tiptap/extension-table-cell": "^2.11.5",
+    "@tiptap/extension-table-header": "^2.11.5",
+    "@tiptap/extension-table-row": "^2.11.5",
+    "@tiptap/extension-text-align": "^2.11.5",
+    "@tiptap/extension-text-style": "^2.11.7",
+    "@tiptap/extension-underline": "^2.11.5",
+    "@types/lodash-es": "^4.17.12",
+    "@vueuse/core": "^13.0.0",
+    "highlight.js": "^11.11.1",
+    "lodash-es": "^4.17.21",
+    "lowlight": "^3.3.0",
+    "playwright": "^1.59.1",
+    "remixicon": "^4.9.1",
+    "sass": "^1.86.0"
+  },
+  "peerDependencies": {
+    "@tiptap/pm": "^2.0.0",
+    "@tiptap/starter-kit": "^2.0.0",
+    "@tiptap/vue-3": "^2.0.0",
+    "ant-design-vue": "^4.0.0",
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/vue": "^8.1.0",
+    "@tiptap/pm": "^2.11.5",
+    "@tiptap/starter-kit": "^2.11.5",
+    "@tiptap/vue-3": "^2.11.5",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/test-utils": "^2.4.6",
+    "@vue/tsconfig": "^0.7.0",
+    "happy-dom": "^18.0.1",
+    "jsdom": "^26.1.0",
+    "rollup-plugin-visualizer": "^6.0.3",
+    "typescript": "~5.7.2",
+    "vite": "^6.2.0",
+    "vite-bundle-analyzer": "^1.0.0",
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^3.2.4",
+    "vue-router": "^4.5.1",
+    "vue-tsc": "^2.2.4"
+  }
+}

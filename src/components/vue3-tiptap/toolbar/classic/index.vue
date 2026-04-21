@@ -24,11 +24,11 @@
 		<Dvider />
 
 		<!-- 段落排版 -->
+		<ToolTemplate :editor="editor" :option="toolbars[12]" /> <!-- LTR -->
+		<ToolTemplate :editor="editor" :option="toolbars[13]" /> <!-- RTL -->
 		<FontAlign :editor="editor" />
 		<ToolTemplate :editor="editor" :option="toolbars[8]" /> <!-- Indent -->
 		<ToolTemplate :editor="editor" :option="toolbars[9]" /> <!-- Outdent -->
-		<ToolTemplate :editor="editor" :option="toolbars[12]" /> <!-- LTR -->
-		<ToolTemplate :editor="editor" :option="toolbars[13]" /> <!-- RTL -->
 		<Dvider />
 
 		<!-- 列表与引用 -->
@@ -50,11 +50,17 @@
 
 		<!-- 工具 -->
 		<ToolTemplate :editor="editor" :option="toolbars[14]" /> <!-- Search -->
-		<FullScreen :editor="editor" />
+	<ToolTemplate :editor="editor" :option="toolbars[16]" /> <!-- HTML Viewer -->
+	<FullScreen :editor="editor" />
 
-		<!-- 查找与替换 -->
-		<Teleport to="body">
-			<FindReplace :editor="editor" :visible="visible" :closeModal="closeModal" />
+	<!-- 查找与替换 -->
+	<Teleport to="body">
+		<FindReplace :editor="editor" :visible="visible" :closeModal="closeModal" />
+	</Teleport>
+
+	<!-- HTML 代码查看器 -->
+	<Teleport to="body">
+		<HtmlViewer :editor="editor" :visible="htmlViewerVisible" :closeModal="closeHtmlViewer" />
 		</Teleport>
 
 		<!-- 自定义 toolbar 插槽 -->
@@ -65,7 +71,7 @@
 <script setup lang="ts">
 import type { Editor } from "@tiptap/core";
 import type { OptionProps } from "./classic";
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import { createToolbarOptions } from "./classic-options";
 import { useModal } from "@/hooks/useModal";
 import ToolTemplate from "./tool-template.vue";
@@ -87,17 +93,22 @@ import FontSize from "./font-style/font-size.vue";
 import FontAlign from "./font-style/font-align.vue";
 import FormatBrush from "./format-brush.vue";
 import LineHeight from "./font-style/line-height.vue";
+import HtmlViewer from "./html-viewer.vue";
 
 interface ToolbarProps {
 	editor: Editor;
 }
 const { visible, toggleModal, closeModal } = useModal();
+const { visible: htmlViewerVisible, toggleModal: toggleHtmlViewer, closeModal: closeHtmlViewer } = useModal();
 
 const props = defineProps<ToolbarProps>();
 const toolbars: OptionProps[] = reactive(
 	createToolbarOptions(props.editor, {
 		searchoutlined: {
 			toggleModal
+		},
+		htmlviewer: {
+			toggleModal: toggleHtmlViewer
 		}
 	})
 );

@@ -1,0 +1,16 @@
+/* 维吾尔语自定义字体 - 全局注册 */
+@font-face {
+	font-family: "UKIJ Ekran";
+	src: url("/UKIJ Ekran.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "ALKATIP Basma";
+	src: url("/ALKATIP Basma.TTF") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}

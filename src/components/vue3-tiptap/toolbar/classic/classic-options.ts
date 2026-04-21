@@ -106,7 +106,7 @@ export const createToolbarOptions = (
 	},
 	{
 		name: "codeBlock",
-		icon: "ri-code-box-line",
+		icon: "ri-code-line",
 		click() {
 			editor.chain().focus().toggleCodeBlock().run();
 		},
@@ -157,6 +157,16 @@ export const createToolbarOptions = (
 		tip: "取消链接",
 		click() {
 			editor.chain().focus().extendMarkRange("link").unsetLink().run();
+		},
+		active: false
+	},
+	{
+		name: "htmlviewer",
+		icon: "ri-code-box-line",
+		tip: "HTML 代码",
+		click() {
+			const { toggleModal } = methods[this.name];
+			toggleModal();
 		},
 		active: false
 	}

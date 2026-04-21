@@ -76,6 +76,13 @@ body.dark-mode {
 		padding-left: 15px;
 		line-height: 2;
 	}
+	// RTL 模式下的引用块：边框和内边距切换到右侧
+	[dir="rtl"] .x-blockquote {
+		border-left: none;
+		border-right: 3px solid var(--main-primary-border);
+		padding-left: 0;
+		padding-right: 15px;
+	}
 	.x-link {
 		color: var(--main-primary-a);
 		text-decoration: underline;
@@ -94,6 +101,12 @@ body.dark-mode {
 		padding-bottom: 5px;
 		padding-left: 0;
 		padding-top: 5px;
+	}
+	// RTL 模式下列表从右侧缩进
+	[dir="rtl"] ul,
+	[dir="rtl"] ol {
+		margin-left: 0;
+		margin-right: 24px;
 	}
 
 	// 标题
@@ -211,6 +224,13 @@ body.dark-mode {
 			}
 		}
 	}
+	// RTL 模式下罗马数字序号从右侧定位
+	[dir="rtl"] ol[data-ordered-style="roman"] li > p::before {
+	left: auto;
+	right: -5px;
+	margin-left: 0;
+	margin-right: -24px;
+}
 
 	// 表格
 	table {
@@ -267,6 +287,17 @@ body.dark-mode {
 
 		*[data-indent="#{$i}"] {
 			margin-left: $indent-margin-base * $i !important;
+		}
+	}
+	// RTL 模式下缩进从右侧计算
+	[dir="rtl"] {
+		@for $i from 1 through 7 {
+			$indent-margin-base: 30px;
+
+			*[data-indent="#{$i}"] {
+				margin-left: 0 !important;
+				margin-right: $indent-margin-base * $i !important;
+			}
 		}
 	}
 }

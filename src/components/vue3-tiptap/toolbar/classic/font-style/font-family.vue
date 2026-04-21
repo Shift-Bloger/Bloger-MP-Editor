@@ -29,6 +29,15 @@
 				<div class="item times" @click="setClassName('Times')">
 					Times New Roman <Icon name="correct" v-if="content === 'Times'" />
 				</div>
+				<div class="item uyghur-ekran" @click="setClassName('UyghurEkran')">
+					ئېكران <Icon name="correct" v-if="content === 'UyghurEkran'" />
+				</div>
+				<div class="item alkatip-basma" @click="setClassName('AlkatipBasma')">
+					ئەلكاتىپ <Icon name="correct" v-if="content === 'AlkatipBasma'" />
+				</div>
+				<div class="item uyghur" @click="setClassName('Uyghur')">
+					مىكروسوفىت <Icon name="correct" v-if="content === 'Uyghur'" />
+				</div>
 			</div>
 		</template>
 	</a-popover>
@@ -101,6 +110,15 @@ const setClassName = (value: string) => {
 		font-family:
 			Times New Roman,
 			sans-serif;
+	}
+	.uyghur-ekran {
+		font-family: "UKIJ Ekran", Microsoft Uighur, sans-serif;
+	}
+	.alkatip-basma {
+		font-family: "ALKATIP Basma", Microsoft Uighur, sans-serif;
+	}
+	.uyghur {
+		font-family: Microsoft Uighur, sans-serif;
 	}
 }
 </style>

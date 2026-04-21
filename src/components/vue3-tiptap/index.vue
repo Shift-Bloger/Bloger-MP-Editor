@@ -153,5 +153,13 @@ onMounted(() => {
 	overflow: hidden;
 	border-radius: 5px;
 	background-color: #fff;
+	display: flex;
+	flex-direction: column;
+}
+
+.vue3-tiptap .editor {
+	flex: 1;
+	overflow-y: auto;
+	min-height: 0;
 }
 </style>

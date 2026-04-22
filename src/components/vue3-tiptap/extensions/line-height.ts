@@ -21,9 +21,9 @@ export const LineHeight = Extension.create({
 
 	addOptions() {
 		return {
-			types: ["heading", "paragraph"],
-			heights: ["100%", "115%", "150%", "200%", "250%", "300%"],
-			defaultHeight: "100%"
+			types: ["heading", "paragraph", "orderedList", "bulletList"],
+			heights: ["1", "1.2", "1.5", "1.6", "1.75", "2", "2.5"],
+			defaultHeight: "1.6"
 		};
 	},
 	//@ts-ignore
@@ -40,7 +40,7 @@ export const LineHeight = Extension.create({
 								return {};
 							}
 
-							return { style: `line-height: ${attributes.lineHeight}` };
+							return { style: `line-height: ${attributes.lineHeight}em` };
 						}
 					}
 				}

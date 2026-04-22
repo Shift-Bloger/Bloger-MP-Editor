@@ -38,7 +38,7 @@ const visible = ref(false);
 const content = ref(1.6);
 const setClassName = (value: number) => {
 	content.value = value;
-	const lineheight = value * 100 + "%";
+	const lineheight = String(value);
 	props.editor.chain().focus().setLineHeight(lineheight).run();
 	visible.value = false;
 };

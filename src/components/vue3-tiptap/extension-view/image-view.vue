@@ -6,14 +6,21 @@
 					<div class="popover__tools">
 						<div
 							class="popover__item"
-							v-for="display in displayCollection"
-							:key="display"
-							@click="updateAttributes({ display })"
+							v-for="item in displayCollection"
+							:key="item.value"
+							@click="onDisplayClick(item.value)"
 						>
-							{{ display }}
+							{{ item.label }}
 						</div>
-						<div class="popover__item" @click="deleteNode()">
-							<DeleteOutlined />
+						<div
+							class="popover__item"
+							:class="{ 'popover__item--active': isRounded }"
+							@click="toggleRound"
+						>
+							圆角
+						</div>
+						<div class="popover__item popover__item--delete" @click="props.deleteNode?.()">
+							删除
 						</div>
 					</div>
 				</template>
@@ -43,7 +50,6 @@
 <script setup lang="ts">
 import { NodeViewWrapper, nodeViewProps } from "@tiptap/vue-3";
 import { ref, reactive, computed, onMounted, onUnmounted } from "vue";
-import { DeleteOutlined } from "@ant-design/icons-vue";
 import { resolveImg } from "@/utils/image";
 import { clamp } from "@/utils/index";
 
@@ -52,7 +58,12 @@ const props = defineProps(nodeViewProps);
 const MIN_SIZE = 20;
 const MAX_SIZE = 1500;
 
-const displayCollection = reactive(["inline", "block", "left", "right"]);
+const displayCollection = reactive([
+	{ value: "inline", label: "行内" },
+	{ value: "block", label: "块级" },
+	{ value: "left", label: "左浮动" },
+	{ value: "right", label: "右浮动" }
+]);
 const maxSize = reactive({
 	width: MAX_SIZE,
 	height: MAX_SIZE
@@ -76,7 +87,8 @@ const src = computed(() => props.node.attrs.src);
 const width = computed(() => props.node.attrs.width);
 const height = computed(() => props.node.attrs.height);
 const display = computed(() => props.node.attrs.display);
-const imageViewClass = computed(() => ["image-view", `image-view--${display.value}`]);
+const isRounded = computed(() => !!props.node.attrs.rounded);
+const imageViewClass = computed(() => ["image-view", `image-view--${display.value}`, { "image-view--rounded": isRounded.value }]);
 
 const loadImage = async (): Promise<void> => {
 	const result: any = await resolveImg(src.value);
@@ -117,6 +129,20 @@ onUnmounted(() => {
 const selectImage = () => {
 	props.editor?.commands.setNodeSelection(props.getPos());
 	selected.value = true;
+};
+
+const onDisplayClick = (value: string) => {
+	const attrs: any = { display: value };
+	if (value === "block") {
+		attrs.width = "100%";
+		attrs.height = null;
+	}
+	props.updateAttributes?.(attrs);
+};
+
+const toggleRound = () => {
+	const newRounded = !isRounded.value;
+	props.updateAttributes?.({ rounded: newRounded || undefined });
 };
 
 // 图片缩放
@@ -246,6 +272,7 @@ const offEvents = () => {
 .popover__tools {
 	display: flex;
 	position: relative;
+	gap: 4px;
 	.popover__item {
 		box-sizing: border-box;
 		cursor: pointer;
@@ -254,8 +281,20 @@ const offEvents = () => {
 		border-radius: 2px;
 		display: flex;
 		align-items: center;
+		font-size: 13px;
+		white-space: nowrap;
 		&:hover {
 			background-color: rgba(0, 0, 0, 0.05);
+		}
+		&--active {
+			color: #409eff;
+			background-color: rgba(64, 158, 255, 0.1);
+		}
+		&--delete {
+			color: #ff4d4f;
+			&:hover {
+				background-color: rgba(255, 77, 79, 0.08);
+			}
 		}
 	}
 }
@@ -288,6 +327,10 @@ const offEvents = () => {
 		float: right;
 		margin-left: 12px;
 		margin-right: 0;
+	}
+
+	&--rounded img {
+		border-radius: 8px;
 	}
 
 	&__body {

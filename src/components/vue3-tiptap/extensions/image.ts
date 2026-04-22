@@ -18,11 +18,12 @@ const Images = TiptapImage.extend({
 				default: DEFAULT_IMAGE_WIDTH,
 				parseHTML: element => {
 					const width = element.style.width || element.getAttribute("width") || null;
+					if (width === "100%") return "100%";
 					return width == null ? null : parseInt(width, 10);
 				},
-				renderHTML: attributes => {
+				renderHTML: (attributes: any) => {
 					return {
-						width: attributes.width
+						width: attributes.display === "block" ? "100%" : attributes.width
 					};
 				}
 			},
@@ -61,6 +62,14 @@ const Images = TiptapImage.extend({
 					return {
 						["data-display"]: attributes.display
 					};
+				}
+			},
+			rounded: {
+				default: false,
+				parseHTML: element => element.hasAttribute("data-rounded") || element.style.borderRadius === "8px",
+				renderHTML: attributes => {
+					if (!attributes.rounded) return {};
+					return { "data-rounded": "", style: "border-radius: 8px" };
 				}
 			}
 		};

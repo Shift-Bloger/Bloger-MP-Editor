@@ -44,7 +44,7 @@ export const TextDirection = Extension.create<TextDirectionOptions>({
               if (attributes.dir === this.options.defaultDirection) {
                 return null
               }
-              return { dir: attributes.dir }
+              return { dir: attributes.dir, style: `direction: ${attributes.dir}` }
             },
           },
         },

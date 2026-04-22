@@ -43,6 +43,7 @@ body.dark-mode {
 
 .dropdown {
 	list-style: none;
+
 	&__opeartion {
 		padding: 5px 0;
 		cursor: pointer;
@@ -68,45 +69,37 @@ body.dark-mode {
 	padding: 10px;
 	min-height: 250px;
 	color: var(--main-primary-font);
+
 	.x-underline {
 		text-underline-offset: 0.3em;
 	}
+
 	.x-blockquote {
 		border-left: 3px solid var(--main-primary-border);
 		padding-left: 15px;
 		line-height: 2;
 	}
-	// RTL 模式下的引用块：边框和内边距切换到右侧
-	[dir="rtl"] .x-blockquote {
-		border-left: none;
-		border-right: 3px solid var(--main-primary-border);
-		padding-left: 0;
-		padding-right: 15px;
-	}
+
 	.x-link {
 		color: var(--main-primary-a);
 		text-decoration: underline;
 	}
+
 	hr {
 		border: none;
 		border-top: 1px solid var(--main-primary-border);
 		margin: 1rem 0;
 	}
+
 	ul,
 	ol {
 		list-style: none;
 		margin-bottom: 0;
-		margin-left: 24px;
+		// margin-left: 24px;
 		margin-top: 0;
 		padding-bottom: 5px;
 		padding-left: 0;
 		padding-top: 5px;
-	}
-	// RTL 模式下列表从右侧缩进
-	[dir="rtl"] ul,
-	[dir="rtl"] ol {
-		margin-left: 0;
-		margin-right: 24px;
 	}
 
 	// 标题
@@ -123,12 +116,15 @@ body.dark-mode {
 	h1 {
 		font-size: 24px;
 	}
+
 	h2 {
 		font-size: 22px;
 	}
+
 	h3 {
 		font-size: 18px;
 	}
+
 	h4 {
 		font-size: 16px;
 	}
@@ -148,28 +144,36 @@ body.dark-mode {
 
 	ol[data-ordered-style="chinese"] {
 		counter-reset: list;
-		li > p {
-			counter-increment: list; /* 为每个 li 元素递增计数器 */
+
+		li>p {
+			counter-increment: list;
+
+			/* 为每个 li 元素递增计数器 */
 			&::before {
 				content: counter(list, cjk-ideographic) "、";
 				white-space: nowrap;
 			}
 		}
 	}
+
 	ol[data-ordered-style="decimal"] {
 		list-style: decimal;
-		li > p {
+
+		li>p {
 			&::before {
 				content: "";
 			}
 		}
 	}
+
 	ol[data-ordered-style="circle"] {
 		list-style-type: none;
 		counter-reset: circle;
+
 		li {
 			counter-increment: circle;
-			& > p {
+
+			&>p {
 				&::before {
 					color: var(--main-font-color);
 					width: 15px !important;
@@ -184,32 +188,40 @@ body.dark-mode {
 			}
 		}
 	}
+
 	ol[data-ordered-style="lower-alpha"] {
 		list-style-type: lower-alpha;
-		li > p {
+
+		li>p {
 			&::before {
 				content: "";
 			}
 		}
 	}
+
 	ol[data-ordered-style="letter"] {
 		counter-reset: letter;
 		list-style-type: none;
+
 		li {
 			counter-increment: letter;
-			& > p {
+
+			&>p {
 				&::before {
 					content: counter(letter, upper-alpha) ".";
 				}
 			}
 		}
 	}
+
 	ol[data-ordered-style="roman"] {
 		list-style-type: none;
 		counter-reset: roman-counter;
+
 		li {
 			counter-increment: roman-counter;
-			& > p {
+
+			&>p {
 				&::before {
 					content: counter(roman-counter, lower-roman) ". ";
 					left: -5px;
@@ -224,13 +236,6 @@ body.dark-mode {
 			}
 		}
 	}
-	// RTL 模式下罗马数字序号从右侧定位
-	[dir="rtl"] ol[data-ordered-style="roman"] li > p::before {
-	left: auto;
-	right: -5px;
-	margin-left: 0;
-	margin-right: -24px;
-}
 
 	// 表格
 	table {
@@ -248,7 +253,8 @@ body.dark-mode {
 			vertical-align: top;
 			box-sizing: border-box;
 			position: relative;
-			> * {
+
+			>* {
 				margin-bottom: 0;
 			}
 		}
@@ -281,6 +287,7 @@ body.dark-mode {
 			pointer-events: none;
 		}
 	}
+
 	// 缩进
 	@for $i from 1 through 7 {
 		$indent-margin-base: 30px;
@@ -289,26 +296,18 @@ body.dark-mode {
 			margin-left: $indent-margin-base * $i !important;
 		}
 	}
-	// RTL 模式下缩进从右侧计算
-	[dir="rtl"] {
-		@for $i from 1 through 7 {
-			$indent-margin-base: 30px;
 
-			*[data-indent="#{$i}"] {
-				margin-left: 0 !important;
-				margin-right: $indent-margin-base * $i !important;
-			}
-		}
-	}
 }
 
 // 查找替换文本颜色
 .search-highlight {
 	background-color: #e2e8f0;
 }
+
 .search-highlight-current {
 	background-color: #B5D2D3;
 }
+
 ::selection {
 	background-color: var(--main-primary-border);
 }
@@ -328,13 +327,16 @@ body.dark-mode {
 	align-items: center;
 	vertical-align: "middle";
 }
+
 .tool:hover {
 	background: var(--main-primary-background);
 }
+
 .tool--active {
 	background-color: var(--main-primary-background);
 	color: var(--main-select-font-color);
 }
+
 // 字数统计
 .words {
 	position: absolute;

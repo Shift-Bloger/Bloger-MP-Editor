@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, provide, ref, watch, withDefaults } from "vue";
+import { onMounted, provide, ref, watch } from "vue";
 import { useEditor, EditorContent } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
 import Toolbar from "./toolbar/classic/index.vue";
@@ -22,7 +22,7 @@ import {
 	Color,
 	Highlight,
 	TextAlign,
-	FontFamily,
+	FontFamilyAttr,
 	Link,
 	Images,
 	Video,
@@ -37,11 +37,13 @@ import {
 	lowlight,
 	SearchReplace,
 	Iframe,
+	TextStyle,
 	CustomTextStyle,
 	FormatBrush,
 	LineHeight,
 	Pdf,
-	TextDirection
+	TextDirection,
+	HeadingStyle
 } from "./extensions/index";
 
 const props = withDefaults(defineProps<TiptapProps>(), {
@@ -76,7 +78,7 @@ const extensions = [
 	TextAlign.configure({
 		types: ["heading", "paragraph"]
 	}),
-	FontFamily,
+	FontFamilyAttr,
 	Link.configure({
 		openOnClick: true,
 		HTMLAttributes: {
@@ -92,15 +94,17 @@ const extensions = [
 	CustomOrderedList,
 	CustomBulletList,
 	CustomIndent,
-	CodeBlockLights.configure({ lowlight }), 
+	CodeBlockLights.configure({ lowlight }),
 	SearchReplace,
 	Iframe,
 	CustomTextStyle,
+	TextStyle,
 	FormatBrush,
-	LineHeight, 
+	LineHeight,
 	Pdf,
+	HeadingStyle,
 	TextDirection.configure({
-		types: ["heading", "paragraph", "table", "tableHeader", "tableRow", "tableCell", "blockquote", "listItem"]
+		types: ["heading", "paragraph", "orderedList", "bulletList", "table", "tableHeader", "tableRow", "tableCell", "blockquote", "listItem"]
 	})
 ];
 

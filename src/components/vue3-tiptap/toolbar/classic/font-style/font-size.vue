@@ -38,7 +38,7 @@ const visible = ref(false);
 const content = ref(15);
 const setClassName = (value: number) => {
 	content.value = value;
-	props.editor.chain().focus().setFontSize(value).run();
+	props.editor.chain().focus().setFontSize(String(value)).run();
 	visible.value = false;
 };
 

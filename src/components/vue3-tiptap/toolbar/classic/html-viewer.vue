@@ -1,6 +1,6 @@
 <template>
   <a-modal
-    v-model:visible="isVisible"
+    v-model:open="isVisible"
     :title="t('htmlViewer')"
     :width="1000"
     :ok-text="t('confirm')"

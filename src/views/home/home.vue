@@ -26,7 +26,7 @@
 			<div class="preview-area" :class="{ 'is-hidden': !showPreview }">
 				<div class="preview-frame">
 					<div class="preview-header">公众号预览</div>
-					<div class="preview-content tiptap" v-html="content"></div>
+					<div class="preview-content tiptap" v-html="wechatHtml"></div>
 				</div>
 			</div>
 			<div class="editor-area">
@@ -38,12 +38,41 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, watch } from "vue"
+import { ref, onMounted, onUnmounted, watch, computed } from "vue"
 import { Vue3TipTap as Vue3Tiptap } from "@/components/vue3-tiptap/index";
 import { WechatOutlined } from "@ant-design/icons-vue";
 import { message, theme } from "ant-design-vue";
 
 const content = ref("<p>欢迎使用微信公众号排版编辑器。🎉</p>");
+
+// 转换代码块以适应微信公众号的特殊要求（iOS Mac风格 + 每行一个code标签）
+const wechatHtml = computed(() => {
+	if (!content.value) return '';
+	
+	const tempDiv = document.createElement('div');
+	tempDiv.innerHTML = content.value;
+	
+	const codeBlocks = tempDiv.querySelectorAll('.mac-code-block pre > code');
+	codeBlocks.forEach(code => {
+		function encodeHTML(str: string) {
+			return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+		}
+		
+		const lines = code.textContent?.split('\n') || [];
+		if (lines.length > 0 && lines[lines.length - 1] === '') {
+			lines.pop();
+		}
+		
+		const newHtml = lines.map((line) => {
+			return `<code>${encodeHTML(line) || ' '}\n</code>`;
+		}).join('');
+		
+		code.outerHTML = newHtml;
+	});
+	
+	return tempDiv.innerHTML;
+});
+
 const isDark = ref(false);
 
 watch(isDark, (val) => {
@@ -84,7 +113,7 @@ const copyContent = async () => {
         try {
                 // 创建一个临时的不可见元素来承载要复制的 HTML
                 const tempDiv = document.createElement("div");
-                tempDiv.innerHTML = content.value;
+                tempDiv.innerHTML = wechatHtml.value;
                 tempDiv.style.position = "absolute";
                 tempDiv.style.left = "-9999px";
                 document.body.appendChild(tempDiv);

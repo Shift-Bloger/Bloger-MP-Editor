@@ -1,16 +1,20 @@
 <template>
-	<node-view-wrapper as="div" class="code-block">
-		<div class="language">
-			<a-select ref="select" v-model:value="selectedLanguage">
-				<a-select-option v-for="(language, index) in languages" :value="language" :key="index">{{
-					language
-				}}</a-select-option>
-			</a-select>
-		</div>
+	<!-- 编辑器内的代码块使用 section 和防过滤内联样式 -->
+	<node-view-wrapper as="section" class="code-block" style="background-color: #282c34; border-radius: 8px; margin: 20px 0; overflow: hidden; font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;">
+		<section class="mac-header" style="height: 32px; line-height: 32px; padding: 0 16px; background-color: #21252b; display: block; font-size: 0;">
+			<span style="width: 12px; height: 12px; border-radius: 50%; background-color: #fc625d; margin-right: 8px; display: inline-block; vertical-align: middle; line-height: 12px; overflow: hidden; font-size: 0;">&nbsp;</span>
+			<span style="width: 12px; height: 12px; border-radius: 50%; background-color: #fdbc40; margin-right: 8px; display: inline-block; vertical-align: middle; line-height: 12px; overflow: hidden; font-size: 0;">&nbsp;</span>
+			<span style="width: 12px; height: 12px; border-radius: 50%; background-color: #35cd4b; display: inline-block; vertical-align: middle; line-height: 12px; overflow: hidden; font-size: 0;">&nbsp;</span>
+			<div style="float: right; vertical-align: middle;">
+				<a-select ref="select" v-model:value="selectedLanguage" :bordered="false" class="language-select" popupClassName="mac-code-dropdown">
+					<a-select-option v-for="(language, index) in languages" :value="language" :key="index">{{
+						language
+					}}</a-select-option>
+				</a-select>
+			</div>
+		</section>
 		<!-- NodeViewContent将可编辑内容添加到节点视图中 -->
-		<div class="pre-wrap">
-			<pre><code><node-view-content /></code></pre>
-		</div>
+		<pre :class="'code-snippet code-snippet__' + selectedLanguage + ' code-snippet_nowrap'" :data-lang="selectedLanguage" style="padding: 16px; margin: 0; overflow-x: auto; color: #abb2bf; font-size: 14px; line-height: 1.6; display: block; white-space: pre; background: #282c34;"><code><node-view-content /></code></pre>
 	</node-view-wrapper>
 </template>
 
@@ -33,78 +37,22 @@ const selectedLanguage = computed({
 
 <style lang="scss" scoped>
 .code-block {
-	border: 1px solid #e1e4e8;
-	border-radius: 6px;
-	overflow: hidden;
-	
-	.language {
-		padding: 10px 20px;
-		background-color: #f6f8fa;
-		border-bottom: 1px solid #e1e4e8;
-		:deep(.ant-select) {
-			width: 100px;
+	:deep(.language-select) {
+		width: 140px;
+		.ant-select-selector {
+			background: transparent !important;
+			color: #abb2bf !important;
+			box-shadow: none !important;
+			border: none !important;
+			text-align: right;
+			padding-right: 0;
+			
+			.ant-select-selection-item {
+				line-height: 32px;
+			}
 		}
-		:deep(.ant-select-selector) {
-			background-color: #f6f8fa;
-			border: 1px solid #d0d7de;
-		}
-	}
-	
-	.pre-wrap{
-		background: #ffffff;
-		padding: 16px;
-		
-		// 确保代码块内的语法高亮样式正确显示
-		:deep(pre) {
-			margin: 0;
-			background: transparent;
-			font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-			font-size: 14px;
-			line-height: 1.45;
-			overflow-x: auto;
-			white-space: pre;
-		}
-		
-		:deep(code) {
-			background: transparent;
-			padding: 0;
-			font-family: inherit;
-			font-size: inherit;
-			color: inherit;
-			border-radius: 0;
-		}
-		
-		// 确保highlight.js的样式能够正确应用
-		:deep(.hljs) {
-			background: transparent;
-			padding: 0;
-			color: #24292f;
-		}
-		
-		// 确保语法高亮颜色正确显示
-		:deep(.hljs-keyword) {
-			color: #d73a49;
-		}
-		
-		:deep(.hljs-string) {
-			color: #032f62;
-		}
-		
-		:deep(.hljs-comment) {
-			color: #6a737d;
-			font-style: italic;
-		}
-		
-		:deep(.hljs-number) {
-			color: #005cc5;
-		}
-		
-		:deep(.hljs-function) {
-			color: #6f42c1;
-		}
-		
-		:deep(.hljs-variable) {
-			color: #e36209;
+		.ant-select-arrow {
+			color: #abb2bf;
 		}
 	}
 }

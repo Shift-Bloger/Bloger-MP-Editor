@@ -44,7 +44,8 @@ import {
 	Margin,
 	Pdf,
 	TextDirection,
-	HeadingStyle
+	HeadingStyle,
+	CustomBlockquote
 } from "./extensions/index";
 
 const props = withDefaults(defineProps<TiptapProps>(), {
@@ -61,11 +62,7 @@ const extensions = [
 		orderedList: false,
 		bulletList: false,
 		codeBlock: false,
-		blockquote: {
-			HTMLAttributes: {
-				class: "x-blockquote"
-			}
-		}
+		blockquote: false
 	}),
 	Underline.configure({
 		HTMLAttributes: {
@@ -107,7 +104,8 @@ const extensions = [
 	HeadingStyle,
 	TextDirection.configure({
 		types: ["heading", "paragraph", "orderedList", "bulletList", "table", "tableHeader", "tableRow", "tableCell", "blockquote", "listItem"]
-	})
+	}),
+	CustomBlockquote
 ];
 
 const wordCount = ref(0);

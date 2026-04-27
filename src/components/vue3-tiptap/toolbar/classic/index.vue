@@ -37,8 +37,8 @@
 		<!-- 列表与引用 -->
 		<OrderedList :editor="editor" />
 		<BulletList :editor="editor" />
-		<ToolTemplate :editor="editor" :option="toolbars[10]" /> <!-- Blockquote -->
-		<ToolTemplate :editor="editor" :option="toolbars[11]" /> <!-- CodeBlock -->
+		<BlockquoteColor :editor="editor" />
+		<ToolTemplate :editor="editor" :option="toolbars[11]" />
 		<Dvider />
 
 		<!-- 插入元素 -->
@@ -98,6 +98,7 @@ import FormatBrush from "./format-brush.vue";
 import LineHeight from "./font-style/line-height.vue";
 import MarginTop from "./font-style/margin-top.vue";
 import MarginBottom from "./font-style/margin-bottom.vue";
+import BlockquoteColor from "./blockquote-color.vue";
 import HtmlViewer from "./html-viewer.vue";
 
 interface ToolbarProps {

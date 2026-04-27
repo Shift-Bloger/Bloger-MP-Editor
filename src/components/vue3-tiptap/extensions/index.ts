@@ -28,6 +28,7 @@ export { default as Margin } from "./margin";
 export { default as Pdf } from "./pdf";
 export { default as TextDirection } from "./text-direction";
 export { default as HeadingStyle } from "./heading-style";
+export { default as CustomBlockquote } from "./blockquote";
 
 import { createLowlight, common } from "lowlight";
 import "highlight.js/styles/atom-one-dark.css";

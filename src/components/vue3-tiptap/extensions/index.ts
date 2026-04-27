@@ -29,7 +29,7 @@ export { default as TextDirection } from "./text-direction";
 export { default as HeadingStyle } from "./heading-style";
 
 import { createLowlight, common } from "lowlight";
-import "highlight.js/styles/github.css";
+import "highlight.js/styles/atom-one-dark.css";
 
 const lowlight = createLowlight(common);
 

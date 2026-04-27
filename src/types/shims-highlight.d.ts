@@ -1,1 +1,1 @@
-declare module 'highlight.js/styles/github.css'; 
+declare module 'highlight.js/styles/atom-one-dark.css'; 

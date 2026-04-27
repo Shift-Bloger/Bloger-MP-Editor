@@ -18,9 +18,10 @@
 		<template #content>
 			<div class="bullet-lists">
 				<div v-for="item in bulletList" :key="item.type" class="bullet-lists-item"
-					@click="setDataSet(item.type)"
-					:class="[{ 'bullet-lists__border': isActive && currentStyle === item.type }]">
+				@click="setDataSet(item.type)"
+				:class="[{ 'bullet-lists__border': isActive && currentStyle === item.type }]">
 					<Icon :name="item.icon" :size="18" />
+					<span class="list-label">{{ item.label }}</span>
 				</div>
 			</div>
 		</template>
@@ -38,15 +39,18 @@ const visible = ref(false);
 const bulletList = [
 	{
 		type: "disc",
-		icon: "ul-solid-circle"
+		icon: "ul-solid-circle",
+		label: "实心圆点"
 	},
 	{
 		type: "circle",
-		icon: "ul-hollow-circle"
+		icon: "ul-hollow-circle",
+		label: "空心圆点"
 	},
 	{
 		type: "square",
-		icon: "ul-solid-square"
+		icon: "ul-solid-square",
+		label: "实心方块"
 	}
 ];
 const currentStyle = ref("");
@@ -80,15 +84,27 @@ const setDataSet = (style: string) => {
 }
 
 .bullet-lists {
-	width: 100%;
+	width: 120px;
 	display: flex;
-	justify-content: center;
-	gap: 5px;
-	flex-wrap: wrap;
+	flex-direction: column;
+	gap: 10px;
 
 	&-item {
 		cursor: pointer;
-		padding: 5px;
+		padding: 5px 10px;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		&:hover {
+			background-color: var(--main-primary-background);
+			border-radius: 4px;
+		}
 	}
+}
+
+.list-label {
+	font-size: 14px;
+	color: var(--text-color);
+	white-space: nowrap;
 }
 </style>

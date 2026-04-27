@@ -21,8 +21,9 @@
 			<div class="order-lists">
 				<div v-for="item in orderList" :key="item.type" class="order-lists-item" @click="setDataSet(item.type)"
 					:class="[{ 'order-lists__border': isActive && currentStyle === item.type }]">
-					<Icon :name="item.icon" :size="25" />
-				</div>
+						<Icon :name="item.icon" :size="20" />
+						<span class="list-label">{{ item.label }}</span>
+					</div>
 			</div>
 		</template>
 	</a-popover>
@@ -40,27 +41,18 @@ const currentStyle = ref("");
 const orderList = [
 	{
 		type: "chinese",
-		icon: "ol-chinese-number"
+		icon: "ol-chinese-number",
+		label: "汉字"
 	},
 	{
 		type: "decimal",
-		icon: "ol-decimal"
-	},
-	{
-		type: "circle",
-		icon: "ol-decimal-zero"
-	},
-	{
-		type: "lower-alpha",
-		icon: "ol-lower-alpha"
+		icon: "ol-decimal",
+		label: "数字"
 	},
 	{
 		type: "letter",
-		icon: "ol-upper-alpha"
-	},
-	{
-		type: "roman",
-		icon: "ol-lower-roman"
+		icon: "ol-upper-alpha",
+		label: "英文"
 	}
 ];
 
@@ -94,13 +86,27 @@ const setDataSet = (style: string) => {
 }
 
 .order-lists {
-	width: 100px;
+	width: 120px;
 	display: flex;
-	flex-wrap: wrap;
-	gap:5px;
+	flex-direction: column;
+	gap:10px;
 	&-item {
 		transition: all 0.2s;
 		cursor: pointer;
+		display: flex;
+		align-items: center;
+		padding: 5px 10px;
+		gap: 10px;
+		&:hover {
+			background-color: var(--main-primary-background);
+			border-radius: 4px;
+		}
 	}
+}
+
+.list-label {
+	font-size: 14px;
+	color: var(--text-color);
+	white-space: nowrap;
 }
 </style>

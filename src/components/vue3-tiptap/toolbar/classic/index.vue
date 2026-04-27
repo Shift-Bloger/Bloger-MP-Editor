@@ -11,7 +11,10 @@
 		<FontFamily :editor="editor" />
 		<HeaderTool :editor="editor" />
 		<FontSize :editor="editor" />
+		<FontAlign :editor="editor" />
 		<LineHeight :editor="editor" />
+		<MarginTop :editor="editor" />
+		<MarginBottom :editor="editor" />
 		<Dvider />
 
 		<!-- 文本样式 -->
@@ -93,6 +96,8 @@ import FontSize from "./font-style/font-size.vue";
 import FontAlign from "./font-style/font-align.vue";
 import FormatBrush from "./format-brush.vue";
 import LineHeight from "./font-style/line-height.vue";
+import MarginTop from "./font-style/margin-top.vue";
+import MarginBottom from "./font-style/margin-bottom.vue";
 import HtmlViewer from "./html-viewer.vue";
 
 interface ToolbarProps {

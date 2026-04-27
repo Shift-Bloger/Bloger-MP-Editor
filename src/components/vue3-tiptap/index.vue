@@ -41,6 +41,7 @@ import {
 	CustomTextStyle,
 	FormatBrush,
 	LineHeight,
+	Margin,
 	Pdf,
 	TextDirection,
 	HeadingStyle
@@ -101,6 +102,7 @@ const extensions = [
 	TextStyle,
 	FormatBrush,
 	LineHeight,
+	Margin,
 	Pdf,
 	HeadingStyle,
 	TextDirection.configure({

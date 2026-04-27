@@ -24,6 +24,7 @@ export { default as TextStyle } from "@tiptap/extension-text-style";
 export { default as CustomTextStyle } from "./text-style";
 export { default as FormatBrush } from "./format-brush";
 export { default as LineHeight } from "./line-height";
+export { default as Margin } from "./margin";
 export { default as Pdf } from "./pdf";
 export { default as TextDirection } from "./text-direction";
 export { default as HeadingStyle } from "./heading-style";

@@ -42,13 +42,13 @@
 			<template #title> <span>文字颜色</span> </template>
 			<div
 				:class="[
-					'tool',
+					'tool font-size',
 					{
 						'tool--active': editor.isActive('textStyle')
 					}
 				]"
 			>
-				<i class="ri-font-color" style="font-size: 16px; color: var(--text-color);"></i>
+				<i class="ri-font-color" style="font-size: 16px; margin-right: 2px; color: var(--text-color);"></i>
 				<i class="ri-arrow-down-s-line" style="font-size: 10px; color: var(--text-color);"></i>
 			</div>
 		</a-tooltip>

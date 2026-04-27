@@ -36,12 +36,27 @@ const Indent = Extension.create<IndentOptions>({
 							const identAttr = element.getAttribute("data-indent");
 							return (identAttr ? parseInt(identAttr, 10) : 0) || 0;
 						},
-						renderHTML: attributes => {
+						renderHTML: (attributes: any) => {
 							if (!attributes.indent) {
 								return {};
 							}
 
-							return { ["data-indent"]: attributes.indent };
+							const indentValue = attributes.indent;
+							const baseIndent = 30;
+							const indentMargin = baseIndent * indentValue;
+							const dir = attributes.dir;
+
+							if (dir === "rtl") {
+								return {
+									"data-indent": indentValue,
+									style: `margin-left: 0; margin-right: ${indentMargin}px`
+								};
+							}
+
+							return {
+								"data-indent": indentValue,
+								style: `margin-left: ${indentMargin}px`
+							};
 						}
 					}
 				}

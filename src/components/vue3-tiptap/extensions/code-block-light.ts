@@ -84,7 +84,7 @@ const CodeBlockLights = CodeBlockLowlight.extend({
 				{
 					class: `code-snippet code-snippet_nowrap`,
 					"data-lang": lang,
-					style: "padding: 0.5em 1em 1em 3em; margin: 0; border: 0px; overflow-x: auto; color: #abb2bf; font-size: 14px; line-height: 1.6; display: block; white-space: pre-wrap; word-break: break-all; background: #1e1e1e !important;"
+					style: "padding: 0.5em 1em 1em 3em; margin: 0; border: 0px; overflow-x: auto; color: #abb2bf; font-size: 14px; line-height: 1.6; display: block; white-space: pre; word-break: break-all; background: #1e1e1e !important;"
 				},
 				...codeLines
 			]

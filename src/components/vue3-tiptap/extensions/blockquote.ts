@@ -32,7 +32,7 @@ const CustomBlockquote = Blockquote.extend({
                             if (dir === "rtl") {
                                 return {
                                     dir: "rtl",
-                                    style: `background-color: ${lightColor}; border-left: none; border-right: 3px solid ${color}; padding: 15px 15px 15px 0; line-height: 1.8; border-radius: 0 4px 4px 0;`
+                                    style: `background-color: ${lightColor}; border-left: none; border-right: 3px solid ${color}; padding: 15px; line-height: 1.8; border-radius: 0 4px 4px 0;`
                                 };
                             }
                             return {
@@ -55,6 +55,19 @@ const CustomBlockquote = Blockquote.extend({
                 }
             }
         ];
+    },
+    parseHTML() {
+        return [
+            {
+                tag: "blockquote"
+            },
+            {
+                tag: "section"
+            }
+        ];
+    },
+    renderHTML({ HTMLAttributes }) {
+        return ["section", HTMLAttributes, 0];
     },
 
     addCommands() {

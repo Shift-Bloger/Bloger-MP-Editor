@@ -3,30 +3,13 @@
                 <div class="page-wrapper" :class="{ 'dark-mode': isDark }">
                         <div class="app-header">
                                 <div class="header-left">
-                                        <WechatOutlined class="logo-icon" />
-                                        <h1>WeChat MP Editor</h1>
+                                        <i class="ri-wechat-fill logo-icon"></i>
+                                        <h1>Bloger MP Editor</h1>
                                 </div>
                                 <div class="header-right">
                                         <div class="theme-switch" @click="toggleTheme">
-                                                <svg v-if="!isDark" class="theme-icon" viewBox="0 0 24 24" width="20"
-                                                        height="20" stroke="currentColor" stroke-width="2" fill="none"
-                                                        stroke-linecap="round" stroke-linejoin="round">
-                                                        <circle cx="12" cy="12" r="5"></circle>
-                                                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                                                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                                                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                                                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                                                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                                                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                                                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                                                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                                                </svg>
-                                                <svg v-else class="theme-icon" viewBox="0 0 24 24" width="20"
-                                                        height="20" stroke="currentColor" stroke-width="2" fill="none"
-                                                        stroke-linecap="round" stroke-linejoin="round">
-                                                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z">
-                                                        </path>
-                                                </svg>
+                                                <i v-if="!isDark" class="ri-sun-fill theme-icon"></i>
+                                                <i v-else class="ri-moon-fill theme-icon"></i>
                                         </div>
                                         <div class="divider"></div>
                                         <a-button type="primary" class="header-btn copy-btn" @click="copyContent">
@@ -51,6 +34,19 @@
                                         <Vue3Tiptap v-model:content="content" @update:modelValue="handleUpdate" />
                                 </div>
                         </div>
+
+                        <div class="app-footer">
+                                <p>Copyright © 2026 Bloger MP Editor</p>
+                                <div class="repo-links">
+                                        <a href="https://github.com/Shift-Bloger/Bloger-MP-Editor" target="_blank" class="repo-link" title="GitHub">
+                                                <i class="ri-github-fill"></i>
+                                        </a>
+                                        <a href="https://gitee.com/Shift-Bloger/Bloger-MP-Editor" target="_blank" class="repo-link" title="Gitee">
+                                                <i class="ri-gitee-fill"></i>
+                                        </a>
+                                </div>
+                                <p>Crafted By <a href="https://www.shiftt.cn">Bloger</a></p>
+                        </div>
                 </div>
         </a-config-provider>
 </template>
@@ -58,7 +54,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, watch, computed } from "vue"
 import { Vue3TipTap as Vue3Tiptap } from "@/components/vue3-tiptap/index";
-import { WechatOutlined } from "@ant-design/icons-vue";
+
 import { message, theme } from "ant-design-vue";
 import { lowlight } from "@/components/vue3-tiptap/extensions/index";
 
@@ -137,7 +133,7 @@ function applyCodeHighlighting(html: string): string {
 	return container.innerHTML;
 }
 
-const content = ref("<p>欢迎使用微信公众号排版编辑器。🎉</p>");
+const content = ref(`<p style="text-align: center; font-family: &quot;UKIJ Ekran&quot;, &quot;Microsoft Uighur&quot;, sans-serif">开始创作吧 ✨ ئىجادىيتىڭىزنى باشلاڭ</p>`);
 
 // 转换代码块以适应微信公众号的特殊要求（Mac风格 + 语法高亮）
 const wechatHtml = computed(() => {
@@ -315,6 +311,57 @@ const copyContent = async () => {
                                 border-color: #06ad56;
                                 color: #fff;
                         }
+                }
+        }
+}
+
+.app-footer {
+        height: 40px;
+        background-color: var(--header-bg);
+        border-top: 1px solid var(--header-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        padding: 0 24px;
+        flex-shrink: 0;
+
+        p {
+                margin: 0;
+                font-size: 12px;
+                color: var(--text-secondary);
+        }
+
+        a {
+                color: var(--text-secondary);
+                text-decoration: none;
+                transition: color 0.2s ease;
+
+                &:hover {
+                        color: #07c160;
+                }
+        }
+
+        .repo-links {
+                display: flex;
+                gap: 8px;
+        }
+
+        .repo-link {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                background-color: rgba(0, 0, 0, 0.05);
+                font-size: 16px;
+                transition: all 0.2s ease;
+
+                &:hover {
+                        background-color: #07c160;
+                        color: #fff;
+                        transform: scale(1.1);
                 }
         }
 }

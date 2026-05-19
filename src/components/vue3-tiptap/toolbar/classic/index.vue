@@ -29,7 +29,6 @@
 		<!-- 段落排版 -->
 		<ToolTemplate :editor="editor" :option="toolbars[12]" /> <!-- LTR -->
 		<ToolTemplate :editor="editor" :option="toolbars[13]" /> <!-- RTL -->
-		<FontAlign :editor="editor" />
 		<ToolTemplate :editor="editor" :option="toolbars[8]" /> <!-- Indent -->
 		<ToolTemplate :editor="editor" :option="toolbars[9]" /> <!-- Outdent -->
 		<Dvider />

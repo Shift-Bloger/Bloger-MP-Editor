@@ -26,7 +26,12 @@
                                 </div>
                                 <div class="preview-area" :class="{ 'is-hidden': !showPreview }">
                                         <div class="preview-frame">
-                                                <div class="preview-header">公众号预览</div>
+                                                <div class="preview-header">
+                                                        <span>公众号预览</span>
+                                                        <button class="close-preview-btn" @click="showPreview = false">
+                                                                <i class="ri-close-line"></i>
+                                                        </button>
+                                                </div>
                                                 <div class="preview-content tiptap" v-html="wechatHtml"></div>
                                         </div>
                                 </div>
@@ -407,19 +412,34 @@ const copyContent = async () => {
                         display: flex;
                         align-items: center;
                         justify-content: center;
+
+                        &.is-active {
+                                display: none;
+                        }
                 }
 
                 .preview-area {
-                        position: absolute;
-                        left: 20px;
-                        top: 20px;
-                        bottom: 20px;
+                        position: fixed;
+                        left: 10px;
+                        top: 10px;
+                        right: 10px;
+                        bottom: 10px;
                         z-index: 99;
                         background: var(--bg-color);
                         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
                         &.is-hidden {
                                 transform: translateX(-120%);
+                        }
+
+                        .preview-frame {
+                                width: 100%;
+                                max-width: 375px;
+                                margin: 0 auto;
+                        }
+
+                        .preview-frame .preview-header .close-preview-btn {
+                                opacity: 1 !important;
                         }
                 }
         }
@@ -461,6 +481,33 @@ const copyContent = async () => {
                                 color: var(--text-color);
                                 border-bottom: 1px solid var(--frame-border);
                                 flex-shrink: 0;
+                                position: relative;
+
+                                .close-preview-btn {
+                                        position: absolute;
+                                        right: 8px;
+                                        top: 50%;
+                                        transform: translateY(-50%);
+                                        width: 28px;
+                                        height: 28px;
+                                        border: none;
+                                        background: rgba(0, 0, 0, 0.08);
+                                        border-radius: 50%;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        cursor: pointer;
+                                        opacity: 0;
+                                        transition: all 0.2s;
+                                        color: var(--text-color);
+                                        font-size: 16px;
+                                        line-height: 1;
+                                        padding: 0;
+
+                                        &:hover {
+                                                background: rgba(0, 0, 0, 0.15);
+                                        }
+                                }
                         }
 
                         .preview-content {
@@ -524,6 +571,14 @@ const copyContent = async () => {
 
 <!-- 非 scoped 样式：v-html 渲染的代码块预览样式 -->
 <style lang="scss">
+.page-wrapper.dark-mode .close-preview-btn {
+	background: rgba(255, 255, 255, 0.12) !important;
+
+	&:hover {
+		background: rgba(255, 255, 255, 0.2) !important;
+	}
+}
+
 .preview-content {
 	.mac-code-block {
 		background-color: #1e1e1e !important;
